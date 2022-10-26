@@ -26,17 +26,19 @@ vx = 0 #x velocity of player
 vy = 0 #y velocity of player
 keys = [False, False, False, False] #this list holds whether each key has been pressed
 isOnGround = False #this variable stops gravity from pulling you down more when on a platform
+health = 300
+
 
 #enemy variables
 #expos = 170
 #eypos = 630
 #timer = 0
-enemy1= [170, 630, 0]
+enemy1= [170, 630, 0] #xpos, ypos, ticker
 enemy2= [300 , 480, 0]
 enemy3= [440 , 630,0]
 #---------------------------------------------- func def
 def enemyMove(enemyInfo):
-    print(enemyInfo)
+    #print(enemyInfo)
     enemyInfo[2]+=1
     if enemyInfo[2] <= 80:
         enemyInfo[0] += 1
@@ -44,6 +46,15 @@ def enemyMove(enemyInfo):
         enemyInfo[0] -= 1
     else:
         enemyInfo[2] = 0 #reset timer
+
+def enemyCollide(enemyInfo, playerX, playerY):
+    if playerX+20>enemyInfo[0]: #right side of player, left side of enemy!
+        if playerX < enemyInfo[0]+20:#left side of player, right side of enemy
+            if playerY < enemyInfo[1]+20: #top of player, bottom of enemy
+                if playerY+20 > enemyInfo[1]:
+                    return True
+    else:
+        return False
 #----------------------------------------------end func
     
 #sound-----------------------------------------
@@ -52,7 +63,7 @@ music = pygame.mixer.music.load('C:/Users/793767/Downloads/saul-goodman-better-c
 pygame.mixer.music.play(-1)
 
 
-while not gameover: #GAME LOOP############################################################
+while not gameover and health > 0: #GAME LOOP############################################################
     clock.tick(60) #FPS
     
     #Input Section------------------------------------------------------------
@@ -99,8 +110,22 @@ while not gameover: #GAME LOOP##################################################
     
     #function call for enemy movement
     enemyMove(enemy1)
+    
     enemyMove(enemy2)
+        
     enemyMove(enemy3)
+        
+    #check collision with enemies
+    if enemyCollide(enemy1, xpos, ypos):
+        print("Hit!, Health is", health)
+        health -= 10
+    elif enemyCollide(enemy2, xpos, ypos):
+        print("Hit!, Health is", health)
+        health -= 10
+    elif enemyCollide(enemy3, xpos, ypos):
+        print("Hit!, Health is", health)
+        health -= 10
+    
     #COLLISION
     if xpos>100 and xpos<200 and ypos+40 >750 and ypos+40 <770:
         ypos = 750-40
@@ -186,4 +211,6 @@ while not gameover: #GAME LOOP##################################################
     pygame.display.flip()#this actually puts the pixel on the screen
     
 #end game loop------------------------------------------------------------------------------
+if health  <= 0:
+    print("BOZO, GAME OVER!")
 pygame.quit()
