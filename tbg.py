@@ -1,5 +1,10 @@
-inventory = ["wood sword"]
 import random
+
+inventory = ["phone"]
+print("Your inventory:", end = "")
+print(inventory)
+
+#Monsters-------------------------------------------------------------------------------------------
 def monster(biome):
     num = random.randrange(0,100)
     if biome == "hallway":
@@ -31,11 +36,15 @@ def monster(biome):
             print("A clown doll sits in the corner of the room. Watching your every move.")
         else:
             print("A tall black figure walks towards you with open arms, but for some reason you feel like you can trust him.")
+
+#Rooms------------------------------------------------------------------------------------------------------
 print("You wake up in your room. But, something feels off. Everything is the same as when you layed down and nothing is out of place. Except, it's quiet. No sound of family talking or the dogs walking around. Crap, you can't even hear the birds chirping. Curious, you decide to explore.")
 room = 1
 while True:
     if room == 1:
         print("You are in your bedroom, you can go (e)ast to enter the hallway, (n)orth to enter your closet, or (s)outh to go into the bathroom.")
+        print("You find yourself a sharp pencil")
+        inventory.append("pencil")
         choice = input()
         if choice == 'e' or choice == 'E'or choice == 'east':
             room = 4
@@ -48,6 +57,7 @@ while True:
             
     if room == 2:
         print("You open the closet door. It is pitch black. Even if you flash your phone's flashlight, nothing appears. It is just dark. You don't want to enter, so you put your hand in. It just dissapears. You can go (s)outh to go back to your bedroom")
+    
         choice = input()
         if choice == 's' or choice == 'S' or choice == 'south':
             room = 1
@@ -97,28 +107,38 @@ while True:
             print("Sorry, not an option!")
             
     if room == 7:
-        print("You are in a different room. One you do not recognize. That feeling of being watched creeps up on you. Yet, there's no door to lead you away. You're cornered! The only way back is to your supposed bedroom. You can go (n)orth")
+        print("You are in a different room. One you do not recognize. A rug is convientaly placed in the middle of the room. That feeling of being watched creeps up on you. Yet, there's no door to lead you away. You're cornered! The only way back is to your supposed bedroom. You can go (n)orth")
         monster("different")
         choice = input()
-        if choice == 'n' or choice == 'N' or choice == 'north':
+        elif choice == 'rug':
+            print("You found a key!")
+            inventory.append("key")
+        elif choice == 'n' or choice == 'N' or choice == 'north':
             room = 6
         else:
             print("Sorry, not an option!")
     
     if room == 8:
-        print("Huh.. the living room seems normal. Everything is in place, no sign of weird happenings. The only weird think is a random door to your left. Do you dare to explore? You can go (n)orth to enter the random door, or (s)outh into your kitchen.")
+        print("Huh.. the living room seems normal. Everything is in place, no sign of weird happenings. The only weird think is a random door to your left but its locked. Do you dare to explore? You can go (n)orth to enter the random door, or (s)outh into your kitchen.")
         choice = input()
         if choice == 'n' or choice == 'N' or choice == 'north':
+            key = False
+            for i in range(len(inventory)):
+                if inventory[i] == "key":
+                    key = True
+                if key == True:
+                    print("You open the door with the key.")
             room = 10
         elif choice == 's' or choice == 'S' or choice == 'south':
             room = 9
+        
         else:
-            print("Sorry, not an option!")
+            print("The door is locked...")
             
     if room == 9:
         print("Holy cow! The kitchen is covered in blood! It looks like a crazy crime scene. Your stomach drops and you feel like throwing up. You need to leave. You weren't supposed to see this. Go (n)orth into the living room.")
         choice = input()
-        if choice == 'n' or choice == 'N' or choice == 'north':
+        elif choice == 'n' or choice == 'N' or choice == 'north':
             room = 8
         else:
             print("Sorry, not an option!")
@@ -126,7 +146,7 @@ while True:
     if room == 10:
         print("Another hallway? However, theres no ending. Or so it seems. You walk down the hallway for what seems like forever. The door back to your living room gets smaller and smaller. You finally reach a dead end. The only way back to 'society' is to go (n)orth")
         choice = input()
-        if choice == 's' or choice == 'S' or choice == 'south':
+        elif choice == 's' or choice == 'S' or choice == 'south':
             room = 8
         else:
             print("Sorry, not an option!")
