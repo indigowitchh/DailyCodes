@@ -110,7 +110,7 @@ while True:
         print("You are in a different room. One you do not recognize. A rug is convientaly placed in the middle of the room. That feeling of being watched creeps up on you. Yet, there's no door to lead you away. You're cornered! The only way back is to your supposed bedroom. You can go (n)orth")
         monster("different")
         choice = input()
-        elif choice == 'rug':
+        if choice == 'r':
             print("You found a key!")
             inventory.append("key")
         elif choice == 'n' or choice == 'N' or choice == 'north':
@@ -126,19 +126,20 @@ while True:
             for i in range(len(inventory)):
                 if inventory[i] == "key":
                     key = True
-                if key == True:
-                    print("You open the door with the key.")
-            room = 10
+            if key == True:
+                print("You open the door with the key.")
+                room = 10
+            else:
+                print("The door is locked...")
         elif choice == 's' or choice == 'S' or choice == 'south':
             room = 9
-        
         else:
-            print("The door is locked...")
+            print("Sorry not an option")
             
     if room == 9:
         print("Holy cow! The kitchen is covered in blood! It looks like a crazy crime scene. Your stomach drops and you feel like throwing up. You need to leave. You weren't supposed to see this. Go (n)orth into the living room.")
         choice = input()
-        elif choice == 'n' or choice == 'N' or choice == 'north':
+        if choice == 'n' or choice == 'N' or choice == 'north':
             room = 8
         else:
             print("Sorry, not an option!")
@@ -146,7 +147,7 @@ while True:
     if room == 10:
         print("Another hallway? However, theres no ending. Or so it seems. You walk down the hallway for what seems like forever. The door back to your living room gets smaller and smaller. You finally reach a dead end. The only way back to 'society' is to go (n)orth")
         choice = input()
-        elif choice == 's' or choice == 'S' or choice == 'south':
+        if choice == 's' or choice == 'S' or choice == 'south':
             room = 8
         else:
             print("Sorry, not an option!")
