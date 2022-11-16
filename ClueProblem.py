@@ -34,5 +34,5 @@ while quit == False:
     if choice != 'q':
         Clue()
     else:
-        print("Goodbye")
+        print("Thanks for playing!")
         quit = True 
