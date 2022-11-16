@@ -11,7 +11,7 @@ RIGHT=1
 UP = 2
 DOWN = 3
 
-Link = pygame.image.load('link.png')
+Link = pygame.image.load('C:/Users/793767/Downloads/pogoifhkpongkoghkfpngfpk (5).png')
 Link.set_colorkey((255,0,255))
 
 #player variables
@@ -27,8 +27,8 @@ isOnGround = False
 
 
 #animation variable
-frameWidth = 64
-frameHeight = 96
+frameWidth = 160
+frameHeight = 160
 RowNum = 0
 frameNum = 0
 ticker = 0
@@ -148,4 +148,3 @@ while not gameover: #GAME LOOP
 
 #end loop--------------------
 pygame.quit()
-    
