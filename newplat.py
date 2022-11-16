@@ -22,6 +22,9 @@ vy = 0 #y velocity of player
 keys = [False, False, False, False]
 isOnGround = False
 
+#controller = pygame.joystick.Joystick(0) 
+#controller.init()
+
 
 #animation variable
 frameWidth = 64
@@ -30,7 +33,7 @@ RowNum = 0
 frameNum = 0
 ticker = 0
 
-while not gameover: #GAME LOOP############################################################
+while not gameover: #GAME LOOP
     clock.tick(60) #FPS
     
     for event in pygame.event.get(): #quit game if x is pressed in top corner
@@ -62,7 +65,9 @@ while not gameover: #GAME LOOP##################################################
             
             elif event.key == pygame.K_DOWN:
                 keys[3]=False
-        
+                
+    
+    
     
 #physics section--------------------------------------------------------------------
     
@@ -97,17 +102,21 @@ while not gameover: #GAME LOOP##################################################
 
     #update player position
     xpos+=vx 
-    ypos+=vy     
+    ypos+=vy
+    #xVel = controller.get_axis(0) #returns a number b/t -1 and 1
+    #yVel = controller.get_axis(1) #returns a number b/t -1 and 1
+    #xpos += int(xVel * 10)
+    #ypos += int(yVel * 10)
     
 #animation  sec-------------------------------------------             
-    if vx < 0:
+    if vx < 0: #or xVel < 0:
         RowNum = 0
         ticker+=1
         if ticker %20==0:
             frameNum+=1
         if frameNum>7:
             frameNum=0
-    elif vx > 0:
+    elif vx > 0: #or xVel > 0:
         RowNum = 1
         ticker+=1
         if ticker %20==0:
@@ -115,7 +124,7 @@ while not gameover: #GAME LOOP##################################################
         if frameNum>7:
             frameNum=0
     
-    elif vy < 0:
+    elif vy < 0: #or yVel < 0:
         RowNum = 2
         ticker+=1
         if ticker %20==0:
@@ -123,7 +132,7 @@ while not gameover: #GAME LOOP##################################################
         if frameNum>7:
             frameNum=0
     
-    elif vy > 0:
+    elif vy > 0: #or yVel > 0:
         RowNum = 3
         ticker+=1
         if ticker %20==0:
