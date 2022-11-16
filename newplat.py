@@ -142,7 +142,7 @@ while not gameover: #GAME LOOP
 
 
 #render section--------------------------------------------------
-    screen.fill((0,0,0)) #wipe screen so it doesn't smear
+    screen.fill((134,134,175)) #wipe screen so it doesn't smear
     screen.blit(Link, (xpos, ypos), (frameWidth*frameNum, RowNum*frameHeight, frameWidth, frameHeight))
     pygame.display.flip()#this actually puts the pixel on the screen
 
